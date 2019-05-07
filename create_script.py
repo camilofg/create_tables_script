@@ -26,14 +26,14 @@ class Create_Script:
                 self.create_table(itm, df1)
 
     def create_table(self, tab_name, df1):
-        tab_name = tab_name.replace(" ", "_").split('\\')[-1:][0]
+        tab_name = tab_name.replace(" ", "_").split('\\')[-1:][0].lower()
         data_type = " character varying(500)"
         str_query = 'CREATE TABLE {}( "ID" SERIAL UNIQUE, '.format(tab_name)
         prefix = ""
         str_cols = ""
         for col in df1.axes[1]:
-            str_query += prefix + '"'+ col.replace(" ", "_")+'" ' + data_type
-            str_cols += prefix + '"'+ col.replace(" ", "_")+'" '
+            str_query += prefix + col.replace(" ", "_")+' ' + data_type
+            str_cols += prefix + col.replace(" ", "_")+' '
             prefix = ", "
         str_query += ");"
 
